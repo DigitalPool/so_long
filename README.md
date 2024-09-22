@@ -139,4 +139,4 @@ so_long/
 ## Credits
 
 - This project is part of the **42 School** curriculum.
-- Developed by [AbdulAzeez Shobajo](https://github.com/digitalpool).
+- Developed by [digitalpool](https://github.com/digitalpool).
