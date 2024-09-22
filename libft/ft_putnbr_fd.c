@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamarcha <gamarcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ashobajo <ashobajo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/15 21:18:40 by gamarcha          #+#    #+#             */
-/*   Updated: 2021/04/15 21:18:40 by gamarcha         ###   ########.fr       */
+/*   Created: 2024/05/24 03:27:27 by ashobajo          #+#    #+#             */
+/*   Updated: 2024/05/24 17:49:41 by ashobajo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	nb;
-
-	nb = n;
-	if (n < 0)
-		nb = -n;
-	if (n < 0)
-		write(fd, "-", 1);
-	if (nb >= 10)
-		ft_putnbr_fd(nb / 10, fd);
-	write(fd, &"0123456789"[nb % 10], 1);
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-n, fd);
+	}
+	else if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + '0', fd);
+	}
+	else
+		ft_putchar_fd(n + '0', fd);
 }

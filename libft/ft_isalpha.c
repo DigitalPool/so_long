@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamarcha <gamarcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ashobajo <ashobajo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/15 21:15:13 by gamarcha          #+#    #+#             */
-/*   Updated: 2021/04/15 21:15:13 by gamarcha         ###   ########.fr       */
+/*   Created: 2024/05/20 13:48:08 by ashobajo          #+#    #+#             */
+/*   Updated: 2024/05/24 10:59:13 by ashobajo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int	ft_isalpha(int c)
 {
-	return (ft_islower(c) || ft_isupper(c));
+	if ((c > 64 && c < 91) || (c > 96 && c <= 122))
+		return (1024);
+	else
+		return (0);
 }

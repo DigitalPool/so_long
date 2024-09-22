@@ -3,35 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamarcha <gamarcha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ashobajo <ashobajo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/15 21:16:47 by gamarcha          #+#    #+#             */
-/*   Updated: 2021/04/15 21:16:47 by gamarcha         ###   ########.fr       */
+/*   Created: 2024/05/24 02:36:31 by ashobajo          #+#    #+#             */
+/*   Updated: 2024/05/24 18:09:11 by ashobajo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static size_t	get_digits(int n)
+{
+	size_t	i;
+
+	i = 1;
+	n /= 10;
+	while (n != 0)
+	{
+		i++;
+		n /= 10;
+	}
+	return (i);
+}
+
 char	*ft_itoa(int n)
 {
-	char			*nbr;
-	unsigned int	nb;
-	int				len_nbr;
+	char		*str_num;
+	size_t		digits;
+	long int	num;
 
-	len_nbr = ft_nbrlen(n);
-	nbr = (char *)malloc(len_nbr + 1);
-	if (nbr == 0)
-		return (0);
-	nbr[len_nbr] = 0;
-	nb = n;
+	num = n;
+	digits = get_digits(n);
 	if (n < 0)
-		nb = -n;
-	while (len_nbr--)
 	{
-		nbr[len_nbr] = "0123456789"[nb % 10];
-		nb /= 10;
+		num *= -1;
+		digits++;
+	}
+	str_num = (char *)malloc(sizeof(char) * (digits + 1));
+	if (!str_num)
+		return (NULL);
+	*(str_num + digits) = 0;
+	while (digits--)
+	{
+		*(str_num + digits) = num % 10 + '0';
+		num = num / 10;
 	}
 	if (n < 0)
-		nbr[0] = '-';
-	return (nbr);
+		*(str_num + 0) = '-';
+	return (str_num);
 }
