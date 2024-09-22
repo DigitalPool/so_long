@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_movement.c                                  :+:      :+:    :+:   */
+/*   pixels.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ashobajo <ashobajo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/21 11:50:08 by ashobajo          #+#    #+#             */
-/*   Updated: 2024/09/21 18:44:23 by ashobajo         ###   ########.fr       */
+/*   Created: 2024/09/21 18:30:25 by ashobajo          #+#    #+#             */
+/*   Updated: 2024/09/21 18:46:03 by ashobajo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_up(t_base *base, int x, int y)
+unsigned int	mlx_get_pixel(t_img *img, int x, int y)
 {
-	if (base->game->map[y - 1][x] == 0)
-		base->game->player.y -= 1;
+	return (*(unsigned int *)
+		(img->data + (x * img->bpp / 8 + y * img->size_line)));
 }
 
-void	move_down(t_base *base, int x, int y)
+void	mlx_draw_pixel(t_img *mlx_img, int x, int y, int color)
 {
-	if (base->game->map[y + 1][x] == 0)
-		base->game->player.y += 1;
+	char			*target;
+
+	target = mlx_img->data + (x * mlx_img->bpp / 8 + y * mlx_img->size_line);
+	*(unsigned int *)target = color;
 }
 
-void	move_left(t_base *base, int x, int y)
+unsigned int	mlx_rgb_to_int(int o, int r, int g, int b)
 {
-	if (base->game->map[y][x - 1] == 0)
-		base->game->player.x -= 1;
-}
-
-void	move_right(t_base *base, int x, int y)
-{
-	if (base->game->map[y][x + 1] == 0)
-		base->game->player.x += 1;
+	return (o << 24 | r << 16 | g << 8 | b);
 }

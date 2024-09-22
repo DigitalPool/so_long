@@ -6,12 +6,11 @@
 /*   By: ashobajo <ashobajo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 11:29:29 by ashobajo          #+#    #+#             */
-/*   Updated: 2024/09/21 12:19:43 by ashobajo         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:45:46 by ashobajo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	key_press(int key_code, t_base *base)
 {
@@ -43,9 +42,9 @@ int	key_release(int key_code, t_base *base)
 	return (0);
 }
 
-int destroy_game(int key_code, t_base *base)
+int	destroy_game(int key_code, t_base *base)
 {
-    (void)key_code;
+	(void)key_code;
 	(void)base;
 	base_destroy(0, 0, 0);
 	return (0);

@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die.c                                              :+:      :+:    :+:   */
+/*   game_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ashobajo <ashobajo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/21 10:23:08 by ashobajo          #+#    #+#             */
-/*   Updated: 2024/09/21 18:45:06 by ashobajo         ###   ########.fr       */
+/*   Created: 2024/09/21 18:29:38 by ashobajo          #+#    #+#             */
+/*   Updated: 2024/09/21 18:45:10 by ashobajo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	die(char *errmsg, int errnum)
+void	game_destroy(t_game *game)
 {
-	if (errmsg != 0 || errnum != 0)
-		ft_putendl_fd("Error", 2);
-	if (errmsg != 0)
-		ft_putstr_fd(errmsg, 2);
-	if (errmsg != 0 && errnum != 0)
-		ft_putstr_fd(": ", 2);
-	if (errnum != 0)
-		ft_putstr_fd(strerror(errnum), 2);
-	if (errmsg != 0 || errnum != 0)
+	int				i;
+
+	if (game != 0)
 	{
-		ft_putendl_fd("", 2);
-		exit(1);
+		if (game->coll != 0)
+			free(game->coll);
+		if (game->map != 0)
+		{
+			i = 0;
+			while (i < game->height)
+				free(game->map[i++]);
+			free(game->map);
+		}
+		free(game);
 	}
-	exit(0);
 }
